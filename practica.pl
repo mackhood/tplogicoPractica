@@ -16,12 +16,17 @@ saleCon(Persona,OtraPersona):- pareja(Persona,OtraPersona).
 saleCon(Persona,OtraPersona):-pareja(OtraPersona,Persona).
 
 %2
-pareja(Bernardo,Bianca).
-pareja(Bernardo,Charo).
+pareja(bernardo,bianca).
+pareja(bernardo,charo).
 
 %3 trabajaPara (Persona,bernardo):-
     trabajaPara(marsellus,Persona),
     Persona/=jules.
     
-    trabajaPara(Persona,george):- saleCon(Persona,bernardo).
-    
+trabajaPara(Persona,george):- saleCon(Persona,bernardo).
+
+%4
+esFiel(Persona):- not(esInfiel(Persona)).
+esInfiel(Persona):- saleCon(Persona,OtraPersona),
+				  saleCon(Persona,Amante),
+				  OtraPersona \= Amante.
