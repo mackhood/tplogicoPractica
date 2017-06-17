@@ -100,5 +100,18 @@ trabajo(Persona,20):-personaje(Persona,mafioso(capo)).
 trabajo(Persona,Nivel):- personaje(Persona,actriz(ListaPeliculas)),length(ListaPeliculas,Cantidad),
 						Nivel is Cantidad/10.
 						
+%4
 
+
+esRespetable(Persona):- nivelRespeto(Persona,Nivel),Nivel>9.
+
+respetabilidad(Respetables,NoRespetables):- personasRespetables(Respetables),personasNoRespetables(NoRespetables).
+
+personasRespetables(Respetables):- findall(Persona,esRespetable(Persona),ListaRespetables),
+								   length(ListaRespetables,Respetables).
+								   
+personasNoRespetables(NoRespetables):- findall(Persona,(personaje(Persona,_),not(esRespetable(Persona))),ListaNoRespetables),
+									length(ListaNoRespetables,NoRespetables).
+	
+	
 	
