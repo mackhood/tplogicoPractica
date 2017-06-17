@@ -113,5 +113,10 @@ personasRespetables(Respetables):- findall(Persona,esRespetable(Persona),ListaRe
 personasNoRespetables(NoRespetables):- findall(Persona,(personaje(Persona,_),not(esRespetable(Persona))),ListaNoRespetables),
 									length(ListaNoRespetables,NoRespetables).
 	
-	
+%5
+
+cantidadEncargos(Persona,Cantidad):- encargo(_,persona,_),findall(Encargo,encargo(_,Persona,Encargo),ListaEncargos),length(ListaEncargos,Cantidad).
+
+mayorEncargo(Persona,OtraPersona):-cantidadEncargos(Persona,Cantidad1),cantidadEncargos(OtraPersona,Cantidad2),Cantidad1>Cantidad2,Persona \= OtraPersona.
+masAtareado(Persona):-encargo(_,OtraPersona,_),forall(encargo(_,Persona,_),mayorEncargo(Persona,OtraPersona)).	
 	
