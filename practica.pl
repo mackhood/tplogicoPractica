@@ -26,7 +26,7 @@ pareja(bernardo,charo).
 trabajaPara(Persona,george):- saleCon(Persona,bernardo).
 
 %4
-esFiel(Persona):- not(esInfiel(Persona)).
+esFiel(Persona):- saleCon(Persona,_), not(esInfiel(Persona)).
 esInfiel(Persona):- saleCon(Persona,OtraPersona),
 				  saleCon(Persona,Amante),
 				  OtraPersona \= Amante.
