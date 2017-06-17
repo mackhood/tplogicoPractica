@@ -77,4 +77,28 @@ esPeligroso(Persona):-personaje(Persona,mafioso(maton)).
 esPeligroso(Persona):-personaje(Persona,ladron([licorerias,_])).
 esPeligroso(Persona):- trabajaPara(Jefe,Persona),esPeligroso(Jefe).
 	
+
+
+%2 
+
+sanCayetano(Persona):-cerca(Persona,_), forall(cerca(Persona,OtraPersona),encargo(Persona,OtraPersona,_)).
+
+cerca(Persona,OtraPersona):- esAmigo(Persona,OtraPersona).
+cerca(Persona,OtraPersona):-trabajanJuntos(Persona,OtraPersona).
+esAmigo(Persona,OtraPersona):- amigo(Persona,OtraPersona).
+esAmigo(Persona,OtraPersona):-amigo(OtraPersona,Persona).
+trabajanJuntos(Persona,OtraPersona):- trabajaPara(Persona,OtraPersona).
+trabajanJuntos(Persona,OtraPersona):- trabajaPara(OtraPersona,Persona).	
+
+
+%3 
+
+nivelRespeto(Persona,Nivel):- trabajo(Persona,Nivel).
+nivelRespeto(vincent,15).
+trabajo(Persona,10):- personaje(Persona,mafioso(resuelveProblemas)).
+trabajo(Persona,20):-personaje(Persona,mafioso(capo)).
+trabajo(Persona,Nivel):- personaje(Persona,actriz(ListaPeliculas)),length(ListaPeliculas,Cantidad),
+						Nivel is Cantidad/10.
+						
+
 	
