@@ -30,3 +30,8 @@ esFiel(Persona):- saleCon(Persona,_), not(esInfiel(Persona)).
 esInfiel(Persona):- saleCon(Persona,OtraPersona),
 				  saleCon(Persona,Amante),
 				  OtraPersona \= Amante.
+%5
+
+acataOrden(Jefe,Empleado):- trabajaPara(Jefe,Empleado).
+acataOrden(Jefe,Empleado):- acataOrden(OtroJefe,Empleado),
+							trabajaPara(Jefe,OtroJefe).
